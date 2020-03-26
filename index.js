@@ -46,7 +46,7 @@ inquirer.prompt([
     
 ]).then(data => {
     console.log(data);
-    fs.appendFile("README.md", data, err => {
+    fs.appendFile("README.md", JSON.stringify(data), err => {
         if(err){
             return console.log(err);
         }
