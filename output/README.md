@@ -1,11 +1,11 @@
 
 # Your Project Title
         
-Fight Club
+Homework9-Good-README-Generator
         
 ## Description
         
-Something important
+Write a program to help the user make a good README.md for their projects.
         
 ## Table of Contents
         
@@ -15,15 +15,15 @@ npm i
         
 ## Usage
         
-Nothing
+Just type what you need in the terminal prompts and let this write it out for you!
         
 ## License
         
-GPL 3.0
+None
         
 ## Contributing
         
-Do not use this
+Nothing
         
 ## Tests
         
