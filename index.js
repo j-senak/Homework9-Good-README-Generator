@@ -45,60 +45,58 @@ const questions = inquirer.prompt([
         message: "What does the user need to know about contributing to the repo?"
     }
     
-]).then(data => {
-    console.log(data);
-    const queryUrl = `https://api.github.com/users/${data.userName}`;
+]).then(resData => {
+    //console.log(res);
+    const queryUrl = `https://api.github.com/users/${resData.userName}`;
     axios.get(queryUrl).then(response => {
-        // console.log(response);
-        const data = response.data
+        //console.log((response));
+        //const data = response.data
+        const data = response.data;
         console.log(data.avatar_url);
         console.log(data.email);
-        const readMe = generateReadMe(data);
+        //const readMe = generateReadMe(res);
+        const readMe = `
+        # Your Project Title
+        
+        ${resData.projectName}
+        
+        ## Description
+        
+        ${resData.description}
+        
+        ## Table of Contents
+        
+        ## Installation
+        
+        ${resData.installDependancies}
+        
+        ## Usage
+        
+        ${resData.repoInfo}
+        
+        ## License
+        
+        ${resData.projectLicense}
+        
+        ## Contributing
+        
+        ${resData.repoContribute}
+        
+        ## Tests
+        
+        ${resData.runTests}
+        
+        ## Questions
+        
+        # Github User
+        ${resData.userName}
+        ${data.avatar_url}
+        ${data.email}
+            `;
         writeReadMe(readMe);
     });
 
 });
-
-const generateReadMe = resData => {
-    return `
-# Your Project Title
-
-${questions.projectName}
-
-## Description
-
-${questions.description}
-
-## Table of Contents
-
-## Installation
-
-${questions.installDependancies}
-
-## Usage
-
-${questions.repoInfo}
-
-## License
-
-${questions.projectLicense}
-
-## Contributing
-
-${questions.repoContribute}
-
-## Tests
-
-${questions.runTests}
-
-## Questions
-
-# Github User
-${questions.userName}
-${resData.avatar_url}
-${resData.email}
-    `
-}
 
 const writeReadMe = str => {
     fs.writeFile("output/README.md", str, err => {
