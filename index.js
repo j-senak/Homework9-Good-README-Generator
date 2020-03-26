@@ -61,8 +61,42 @@ const questions = inquirer.prompt([
 
 const generateReadMe = resData => {
     return `
-# ${resData.avatar_url}
-# ${resData.email}
+# Your Project Title
+
+${questions.projectName}
+
+## Description
+
+${questions.description}
+
+## Table of Contents
+
+## Installation
+
+${questions.installDependancies}
+
+## Usage
+
+${questions.repoInfo}
+
+## License
+
+${questions.projectLicense}
+
+## Contributing
+
+${questions.repoContribute}
+
+## Tests
+
+${questions.runTests}
+
+## Questions
+
+# Github User
+${questions.userName}
+${resData.avatar_url}
+${resData.email}
     `
 }
 
