@@ -2,7 +2,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require("axios");
 
-inquirer.prompt([
+const questions = inquirer.prompt([
     {
        type: "input",
        name: "userName",
@@ -47,24 +47,43 @@ inquirer.prompt([
     
 ]).then(data => {
     console.log(data);
-    fs.appendFile("README.md", JSON.stringify(data), err => {
+    const queryUrl = `https://api.github.com/users/${data.userName}`;
+    axios.get(queryUrl).then(response => {
+        // console.log(response);
+        const data = response.data
+        console.log(data.avatar_url);
+        console.log(data.email);
+        const readMe = generateReadMe(data);
+        writeReadMe(readMe);
+    });
+
+});
+
+const generateReadMe = resData => {
+    return `
+# ${resData.avatar_url}
+# ${resData.email}
+    `
+}
+
+const writeReadMe = str => {
+    fs.writeFile("output/README.md", str, err => {
         if(err){
             return console.log(err);
         }
         console.log("Success!");
     })
-});
-
-
-const questions = [
-
-];
-
-function writeToFile(fileName, data) {
 }
 
-function init() {
+// const questions = [
 
-}
+// ];
 
-init();
+// function writeToFile(fileName, data) {
+// }
+
+// function init() {
+
+// }
+
+// init();
