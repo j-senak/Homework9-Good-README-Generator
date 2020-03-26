@@ -56,42 +56,42 @@ const questions = inquirer.prompt([
         console.log(data.email);
         //const readMe = generateReadMe(res);
         const readMe = `
-        # Your Project Title
+# Your Project Title
         
-        ${resData.projectName}
+${resData.projectName}
         
-        ## Description
+## Description
         
-        ${resData.description}
+${resData.description}
         
-        ## Table of Contents
+## Table of Contents
         
-        ## Installation
+## Installation
         
-        ${resData.installDependancies}
+${resData.installDependancies}
         
-        ## Usage
+## Usage
         
-        ${resData.repoInfo}
+${resData.repoInfo}
         
-        ## License
+## License
         
-        ${resData.projectLicense}
+${resData.projectLicense}
         
-        ## Contributing
+## Contributing
         
-        ${resData.repoContribute}
+${resData.repoContribute}
         
-        ## Tests
+## Tests
         
-        ${resData.runTests}
+${resData.runTests}
         
-        ## Questions
+## Questions
         
-        # Github User
-        ${resData.userName}
-        ${data.avatar_url}
-        ${data.email}
+# Github User
+${resData.userName}
+${data.avatar_url}
+${data.email}
             `;
         writeReadMe(readMe);
     });
