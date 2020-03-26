@@ -1,20 +1,21 @@
-var inquirer = require("inquirer");
+const inquirer = require("inquirer");
 var fs = require("fs");
 
 inquirer.prompt([
     {
        type: "input",
-       name: "title",
-       message: "What is the title of this project?" 
+       user: "userName",
+       message: "What is your Github username?" 
     },
     {
         type: "input",
-
+        name: "projectName",
+        message: "What is your project name?"
     }
     
-]).then(function(response) {
-    console.log(response.title);
-    fs.appendFile("README.md", response.title, function(err){
+]).then(data => {
+    console.log(data);
+    fs.appendFile("README.md", response, function(err){
         if(err){
             return console.log(err);
         }
